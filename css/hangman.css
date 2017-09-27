@@ -16,6 +16,10 @@
   height: 100px;
   background: #dfdbdb;
   margin: 5px;
-  display: flex;
   border-bottom: 10px solid #4b4b4b;
+  font-size: 60px;
+  text-align: center;
+  line-height: 100px;
+  font-family: sans-serif;
+  text-transform: uppercase;
 }
