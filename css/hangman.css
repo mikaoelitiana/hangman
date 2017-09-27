@@ -1,0 +1,20 @@
+.hangman-inputs input{
+  width: 615px;
+  padding: 20px;
+  text-align: center;
+  height: 50px;
+  font-size: 20px;
+}
+
+.hangman-placeholders {
+  display: flex;
+}
+
+.hangman-placeholders--char {
+  width: 100px;
+  height: 100px;
+  background: #dfdbdb;
+  margin: 5px;
+  display: flex;
+  border-bottom: 10px solid #4b4b4b;
+}

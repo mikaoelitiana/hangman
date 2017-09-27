@@ -11,11 +11,18 @@ services:
       - /var/www/html/profiles
       - /var/www/html/themes
       - /var/www/html/sites
+      - /var/www/html/sites/default/files
       - ./:/var/www/html/sites/all/modules/hangman
     restart: always
+    links:
+      - postgres
 
   postgres:
     image: postgres:9.6
+    volumes:
+      - ./data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: example
+    expose:
+      - 5432
     restart: always
