@@ -23,7 +23,7 @@ function _hangman_page() {
 
   $content['text_input'] = array(
     '#type' => 'markup',
-    '#markup' => '<div class="hangman-inputs"><input type="text" placeholder="Try letter or number ..."/></div>',
+    '#markup' => '<div class="hangman-inputs"><input type="text" placeholder="Try letters or numbers ..."/></div>',
   );
 
   return $content;
@@ -57,4 +57,17 @@ function _hangman_get_guess_word() {
     $word = $_SESSION['hangman_word'];
   }
   return $word;
+}
+
+/**
+ * Find all positions of a char in a given word
+ */
+function _hangman_char_positions_in_word($char, $word) {
+  $found = array();
+  $offset = 0;
+  while(($at = strpos($word, $char, $offset)) !== false) {
+    $found[] = $at;
+    $offset = $at + 1;
+  }
+  return $found;
 }

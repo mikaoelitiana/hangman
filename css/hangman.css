@@ -3,7 +3,8 @@
   padding: 20px;
   text-align: center;
   height: 50px;
-  font-size: 20px;
+  font-size: 35px;
+  text-transform: uppercase;
 }
 
 .hangman-placeholders {
