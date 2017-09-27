@@ -1,0 +1,33 @@
+<?php
+
+function hangman_schema() {
+  $schema['hangman_score'] = array(
+    'description' => 'Stores hangman game scores',
+    'fields' => array(
+      'sid' => array(
+        'description' => 'The primary identifier for a score entry.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'uid' => array(
+        'description' => 'The id of the user',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'name' => array(
+        'description' => 'The display name',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => ''),
+      'score' => array(
+        'description' => 'The user score',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => ''),
+      ),
+      'primary key' => array('sid'),
+  );
+  return $schema;
+}
