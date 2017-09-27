@@ -10,7 +10,8 @@ services:
       - /var/www/html/modules
       - /var/www/html/profiles
       - /var/www/html/themes
-      - ./sites:/var/www/html/sites
+      - /var/www/html/sites
+      - ./:/var/www/html/sites/all/modules/hangman
     restart: always
 
   postgres:

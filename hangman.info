@@ -1,0 +1,3 @@
+name = Hangman Game
+description = Add an hangman game to your website
+core = 7.x
