@@ -5,5 +5,7 @@ A Drupal module that adds a hangman game to your website.
 
 ## Usage
 
+- Enter Drupal administration
+- Go to _Modules_ page
 - Enable module `Hangman Game`
 - Go to page `/hangman`
