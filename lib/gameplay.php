@@ -33,8 +33,13 @@ function _hangman_end_game() {
  */
 function _hangman_get_guess_word() {
   if (!isset($_SESSION['hangman_word'])) {
-    $words = array("3dhubs", "marvin", "print", "filament", "order", "layer");
-    $word = $words[rand(0, count($words) - 1)];
+    $result = db_select('hangman_word', 'hw')
+      ->fields('hw', array('word'))
+      ->range(0,1)
+      ->orderRandom()
+      ->execute()
+      ->fetchAssoc();
+    $word = $result['word'];
     $_SESSION['hangman_word'] = $word;
   } else {
     $word = $_SESSION['hangman_word'];
