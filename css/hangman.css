@@ -36,6 +36,10 @@
   font: 30px sans-serif;
 }
 
+.hangman-keyboard--button_found {
+  border: 4px #9dffaa dotted;
+}
+
 .hangman-keyboard--button_error {
   border: 4px #f00 dotted;
 }
