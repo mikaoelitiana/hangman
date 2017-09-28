@@ -11,15 +11,13 @@
  */
 function _hangman_page() {
   global $user;
-  $username = isset($user->name) ? $user->name : "Anonymous";
+  drupal_add_css(drupal_get_path('module', 'hangman') . '/css/hangman.css');
+  drupal_add_js(drupal_get_path('module', 'hangman') . '/js/hangman.js');
 
   _hangman_start_game();
 
-  drupal_add_js(drupal_get_path('module', 'hangman') . '/js/hangman.js');
-  drupal_add_css(drupal_get_path('module', 'hangman') . '/css/hangman.css');
-
   $content = array();
-
+  $username = isset($user->name) ? $user->name : "Anonymous";
   $word = _hangman_get_guess_word();
   $word_count = strlen($word);
 
@@ -60,10 +58,12 @@ function _hanman_build_keyboard()
 {
   $chars = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
   $keyboard = '<div class="hangman-keyboard">';
+
   foreach($chars as $char){
     $keyboard .= '<button data-key="' . $char . '" class="hangman-keyboard--button">' . $char . '</button>';
   }
   $keyboard .= '</div>';
+
   return $keyboard;
 }
 
@@ -97,6 +97,7 @@ function _hangman_build_lead_board() {
   $leadboard = '<div class="hangman-leadboard"><table>';
   $result = _hangman_get_high_scores();
   $i = 1;
+
   while($record = $result->fetchAssoc()) {
     $leadboard .= '<tr><td class="stars">' . _hangman_get_stars($i++) . '</td><td>' . $record['name'] . '</td><td class="score">' . $record['max_score'] . '</td>';
   }
