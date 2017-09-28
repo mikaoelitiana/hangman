@@ -9,6 +9,7 @@
 
 .hangman-placeholders {
   display: flex;
+  justify-content: center;
 }
 
 .hangman-placeholders--char {
@@ -27,6 +28,7 @@
 .hangman-keyboard {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hangman-keyboard--button {
@@ -42,4 +44,23 @@
 
 .hangman-keyboard--button_error {
   border: 4px #f00 dotted;
+}
+
+.hangman-game-status {
+  text-align: center;
+  font: 40px sans-serif;
+  margin: 20px;
+}
+
+.hangman-game-status_over {
+  color: rgb(255, 88, 88);
+}
+
+.hangman-game-status_restart button {
+  color: #fff;
+  background: #52cc60;
+  border: 5px solid rgb(3, 143, 17);
+  padding: 10px;
+  margin: 20px;
+  font: 40px sans-serif;
 }
