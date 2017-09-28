@@ -10,7 +10,9 @@ define('ERROR_LIMIT', 5);
  * Start game and store in session
  */
 function _hangman_start_game() {
-  $_SESSION['hangman_game_started'] = true;
+  unset($_SESSION['hangman_game_ended']);
+
+  $_SESSION['hangman_game_started'] = time();
   $_SESSION['hangman_found'] = 0;
   $_SESSION['hangman_errors'] = 0;
 }
@@ -20,7 +22,8 @@ function _hangman_start_game() {
   */
 function _hangman_end_game() {
   unset($_SESSION['hangman_word']);
-  $_SESSION['hangman_game_started'] = false;
+
+  $_SESSION['hangman_game_ended'] = time();
 }
 
 /**
@@ -67,15 +70,15 @@ function _hangman_ajax_check_char()
   if (count($found) > 0) {
     $_SESSION['hangman_found'] += count($found);
     if($_SESSION['hangman_found'] == strlen($word)) {
-      $won = true;
-      $score = _hangman_calculate_score();
       _hangman_end_game();
+      $won = true;
+      $score = _hangman_calculate_score($word, $_SESSION['hangman_errors'], $_SESSION['hangman_game_ended'], $_SESSION['hangman_game_started']);
     }
   } else {
     $_SESSION['hangman_errors'] += 1;
     if ($_SESSION['hangman_errors'] >= ERROR_LIMIT) {
-      $game_over = true;
       _hangman_end_game();
+      $game_over = true;
     }
   }
 

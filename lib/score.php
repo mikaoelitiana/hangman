@@ -13,21 +13,30 @@
  }
 
  /**
-  * Calculat user score
+  * Calculate user score
+  *
+  * @param string $word The guess word
+  * @param int $errors Errors count
+  * @param int $start Game start timestamp
+  * @param int $end Game end timestamp
+  *
+  * @return int the score
   */
- function _hangman_calculate_score() {
+ function _hangman_calculate_score($word, $errors, $start, $end) {
    // initial score is 1000
-   $score = 1000;
+   $score = strlen($word) * 1000;
 
    // If any error done, remove some points
-   if ($_SESSION['hangman_errors'] > 0) {
-     $score -= $_SESSION['hangman_errors'] * 35;
+   if ($errors > 0) {
+     $score -= $errors * 35;
    } else {
      // Bonus if no error
      $score += 1500;
    }
 
   // calculate totla time and ad some score
+  $score += (int)(exp(1/($end - $start)) * 1500);
 
-   return $score;
+  return $score;
  }
+
