@@ -44,6 +44,9 @@ function _hangman_get_guess_word() {
 
 /**
  * Find all positions of a char in a given word
+ *
+ * @param string $char One char to find in the word
+ * @param string $word The word to guess
  */
 function _hangman_char_positions_in_word($char, $word) {
   $found = array();
