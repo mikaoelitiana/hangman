@@ -29,5 +29,57 @@ function hangman_schema() {
       ),
       'primary key' => array('sid'),
   );
+
+  $schema['hangman_word'] = array(
+    'description' => 'Stores hangman game words',
+    'fields' => array(
+      'wid' => array(
+        'description' => 'The primary identifier for a word entry.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'word' => array(
+        'description' => 'The word',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => ''),
+      ),
+      'primary key' => array('wid'),
+  );
   return $schema;
+}
+
+function hangman_install() {
+  $values = array(
+    array(
+      'word' => '3dhubs'
+    ),
+    array(
+      'word' => 'marvin'
+    ),
+    array(
+      'word' => 'print'
+    ),
+    array(
+      'word' => 'filament'
+    ),
+    array(
+      'word' => 'order'
+    ),
+    array(
+      'word' => 'layer'
+    ),
+  );
+
+  $query = db_insert('hangman_word')
+    ->fields(array(
+      'word'
+    ));
+
+  foreach ($values as $record) {
+    $query->values($record);
+  }
+
+  $query->execute();
 }
