@@ -17,7 +17,7 @@ function _hangman_page() {
   $content['text_placeholder'] = array(
     '#type' => 'markup',
     '#markup' => '<div class="hangman-placeholders">' .
-      str_repeat('<div class="hangman-placeholders--char">&nbsp;</div>', $word_count) .
+      str_repeat('<div class="hangman-placeholders--char">?</div>', $word_count) .
     '</div>',
   );
 
