@@ -18,8 +18,10 @@ jQuery(function($){
 
       $('.hangman-game-status').html('\
         <div class="hangman-game-status_won">🌟🌟 You won!!! ' + data.score + 'pts 🌟🌟</div>\
-        <div class="hangman-game-status_restart"><button onclick="window.location.reload()">Restart</button></div>\
-        <div class="hangman-game-status_restart"><button onclick="window.location.replace(Drupal.settings.basePath + \'hangman/high-scores\')">Leader Board</button></div>\
+        <div class="hangman-game-status_restart">\
+          <button onclick="window.location.replace(Drupal.settings.basePath + \'hangman/high-scores\')">Leader Board</button>\
+          <button onclick="window.location.reload()">Restart</button>\
+        </div>\
         ');
 
       $('.hangman-game-save-score').show();

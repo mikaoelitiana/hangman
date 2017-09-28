@@ -68,6 +68,8 @@ function _hanman_build_keyboard()
 }
 
 function _hangman_high_scores_page() {
+  drupal_add_css(drupal_get_path('module', 'hangman') . '/css/hangman.css');
+
   $content = array();
 
   $content['lead_board'] = array(
@@ -76,6 +78,17 @@ function _hangman_high_scores_page() {
       ' . _hangman_build_lead_board() . '
     </div>',
   );
+
+  $content['start'] = array(
+    '#type' => 'markup',
+    '#markup' => '<div class="hangman-game-status">
+      <div class="hangman-game-status_restart">
+        <button onclick="window.location.replace(\'' . url('hangman') .'\')">Start</button>
+      </div>
+  </div>',
+  );
+
+
 
   return $content;
 }
