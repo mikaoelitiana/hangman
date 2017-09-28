@@ -1,7 +1,5 @@
 version: '3.1'
-
 services:
-
   drupal:
     image: drupal:7-apache
     ports:
@@ -16,7 +14,6 @@ services:
     restart: always
     links:
       - postgres
-
   postgres:
     image: postgres:9.6
     volumes:
