@@ -73,6 +73,7 @@ function _hangman_ajax_save_score() {
 function _hangman_get_high_scores() {
   $query = db_select('hangman_score', 'hs')
     ->fields('hs', array('sid', 'name', 'score'))
+    ->groupBy('hs.sid')
     ->groupBy('hs.uid')
     ->orderBy('score', 'DESC')
     ->range(0, 10);
