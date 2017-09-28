@@ -14,15 +14,18 @@
  {
   global $user;
 
-  $sid = db_insert('hangman_score')
-    ->fields(array(
-      'uid' => isset($user->uid) ? $user->uid : 0,
-      'name' => $username != "" ? $username : 'Anonymous',
-      'score' => $score,
-    ))
-    ->execute();
+  if($username != '' && $score){
+    $sid = db_insert('hangman_score')
+      ->fields(array(
+        'uid' => isset($user->uid) ? $user->uid : 0,
+        'name' => $username,
+        'score' => $score,
+      ))
+      ->execute();
 
-  return $sid;
+    return $sid;
+  }
+  return false;
  }
 
  /**

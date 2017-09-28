@@ -24,7 +24,7 @@ function hangman_schema() {
       'score' => array(
         'description' => 'The user score',
         'type' => 'int',
-        'not null' => TRUE,
+        'not null' => FALSE,
         'default' => 0),
       ),
       'primary key' => array('sid'),
