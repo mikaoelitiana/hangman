@@ -1,5 +1,8 @@
 <?php
 
+define('ERROR_LIMIT', 5);
+
+
 /**
  * Create hangman main page
  */
@@ -35,6 +38,7 @@ function _hangman_page() {
 function _hangman_start_game() {
   $_SESSION['hangman_game_started'] = true;
   $_SESSION['hangman_found'] = 0;
+  $_SESSION['hangman_errors'] = 0;
 }
 
 /**
@@ -97,15 +101,24 @@ function _hangman_ajax_check_char()
   $word = _hangman_get_guess_word();
   $found = _hangman_char_positions_in_word($params['char'], $word);
   $won = false;
+  $game_over = false;
 
-  $_SESSION['hangman_found'] += count($found);
-  if($_SESSION['hangman_found'] == strlen($word)) {
-    $won = true;
+  if (count($found) > 0) {
+    $_SESSION['hangman_found'] += count($found);
+    if($_SESSION['hangman_found'] == strlen($word)) {
+      $won = true;
+    }
+  } else {
+    $_SESSION['hangman_errors'] += 1;
+    if ($_SESSION['hangman_errors'] >= ERROR_LIMIT) {
+      $game_over = true;
+    }
   }
 
   return array(
     'positions' => $found,
     'char' => $params['char'],
     'won' => $won,
+    'game_over' => $game_over,
   );
 }

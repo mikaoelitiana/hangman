@@ -1,9 +1,7 @@
 jQuery(function($){
-  var countErrors = 0;
 
-  function incrementErrors() {
-    countErrors++;
-    if (countErrors >= 5) {
+  function checkErrors(data) {
+    if (data.game_over) {
       // Game over
       disableAllButtons();
     }
@@ -18,7 +16,7 @@ jQuery(function($){
     var char = $(this).data("key");
     $.getJSON("hangman/check-char", { char: char }, function(data){
       if (data.positions.length < 1) {
-        incrementErrors();
+        checkErrors(data);
         key.addClass('hangman-keyboard--button_error');
       } else {
         for (var i = 0; i < data.positions.length; i++) {
