@@ -5,8 +5,8 @@
  * A module that adds a hangman game to Drupal.
  */
 
-require 'display.php';
-require 'gameplay.php';
+require_once 'lib/display.php';
+require_once 'lib/gameplay.php';
 
 /**
 * Implements hook_menu().
