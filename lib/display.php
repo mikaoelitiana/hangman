@@ -66,3 +66,27 @@ function _hanman_build_keyboard()
   $keyboard .= '</div>';
   return $keyboard;
 }
+
+function _hangman_high_scores_page() {
+  $content = array();
+
+  $content['lead_board'] = array(
+    '#type' => 'markup',
+    '#markup' => '<div>
+      ' . _hangman_build_lead_board() . '
+    </div>',
+  );
+
+  return $content;
+}
+
+function _hangman_build_lead_board() {
+  $leadboard = '<div class="hangman_leadboard"><table>';
+  $result = _hangman_get_high_scores();
+  while($record = $result->fetchAssoc()) {
+    $leadboard .= '<tr><td>' . $record['name'] . '</td><td>' . $record['max_score'] . '</td>';
+  }
+  $leadboard .= '</table></div>';
+
+  return $leadboard;
+}

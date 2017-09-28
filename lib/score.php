@@ -69,3 +69,15 @@ function _hangman_ajax_save_score() {
     'sid' => _hangman_store_score($params['username'], $score),
   );
 }
+
+function _hangman_get_high_scores() {
+  $query = db_select('hangman_score', 'hs')
+    ->fields('hs', array('sid', 'name', 'score'))
+    ->groupBy('hs.uid')
+    ->orderBy('score', 'DESC')
+    ->range(0, 10);
+
+  $query->addExpression('MAX(score)', 'max_score');
+
+  return $query->execute();
+}
