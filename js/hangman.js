@@ -5,7 +5,12 @@ jQuery(function($){
     countErrors++;
     if (countErrors >= 5) {
       // Game over
+      disableAllButtons();
     }
+  }
+
+  function disableAllButtons() {
+    $('.hangman-keyboard--button').attr('disabled', true);
   }
 
   $('.hangman-keyboard--button').click(function(){
