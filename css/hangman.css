@@ -56,6 +56,10 @@
   color: rgb(255, 88, 88);
 }
 
+.hangman-game-status_won {
+  color: #65e254;
+}
+
 .hangman-game-status_restart button {
   color: #fff;
   background: #52cc60;

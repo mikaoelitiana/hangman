@@ -69,6 +69,7 @@ function _hangman_ajax_check_char()
     if($_SESSION['hangman_found'] == strlen($word)) {
       $won = true;
       $score = _hangman_calculate_score();
+      _hangman_end_game();
     }
   } else {
     $_SESSION['hangman_errors'] += 1;
@@ -83,5 +84,6 @@ function _hangman_ajax_check_char()
     'char' => $params['char'],
     'won' => $won,
     'game_over' => $game_over,
+    'score' => $score,
   );
 }
