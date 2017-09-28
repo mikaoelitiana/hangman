@@ -49,8 +49,10 @@ jQuery(function($){
   });
 
   $('.hangman-game-save-score--button').click(function() {
-    $.getJSON("hangman/save-score", { username : $('hangman_score_username').val() }, function(data){
-
+    $.getJSON("hangman/save-score", { username : $('#hangman_score_username').val() }, function(data){
+      if(data.sid) {
+        $('.hangman-game-save-score').hide();
+      }
     });
   });
 

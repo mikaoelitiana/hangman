@@ -22,10 +22,16 @@ function hangman_menu() {
       );
 
     $items['hangman/check-char'] = array(
-      'page arguments' => array(3),
       'type' => MENU_CALLBACK,
       'access arguments' => array('access content'),
       'page callback' => '_hangman_ajax_check_char',
+      'delivery callback' => 'drupal_json_output',
+    );
+
+    $items['hangman/save-score'] = array(
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+      'page callback' => '_hangman_ajax_save_score',
       'delivery callback' => 'drupal_json_output',
     );
 

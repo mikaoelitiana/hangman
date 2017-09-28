@@ -6,10 +6,23 @@
 
  /**
   * Store one user score to database
+  *
+  * @param string $username The name to store in DB
+  * @param int $score The score to store
   */
- function _hangman_store_score($user, $score)
+ function _hangman_store_score($username, $score)
  {
+  global $user;
 
+  $sid = db_insert('hangman_score')
+    ->fields(array(
+      'uid' => isset($user->uid) ? $user->uid : 0,
+      'name' => $username != "" ? $username : 'Anonymous',
+      'score' => $score,
+    ))
+    ->execute();
+
+  return $sid;
  }
 
  /**
@@ -37,6 +50,19 @@
   // calculate totla time and ad some score
   $score += (int)(exp(1/($end - $start)) * 1500);
 
+  // temporary store score
+  $_SESSION['hangman_latest_score'] = $score;
+
   return $score;
  }
 
+function _hangman_ajax_save_score() {
+  $params = drupal_get_query_parameters();
+  $score = $_SESSION['hangman_latest_score'];
+
+  unset($_SESSION['hangman_latest_score']);
+
+  return array(
+    'sid' => _hangman_store_score($params['username'], $score),
+  );
+}

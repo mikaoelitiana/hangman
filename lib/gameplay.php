@@ -10,10 +10,6 @@ define('ERROR_LIMIT', 5);
  * Start game and store in session
  */
 function _hangman_start_game() {
-  if (isset($_SESSION['hangman_game_ended'])) {
-    unset($_SESSION['hangman_game_ended']);
-  }
-
   $_SESSION['hangman_game_started'] = time();
   $_SESSION['hangman_found'] = 0;
   $_SESSION['hangman_errors'] = 0;
@@ -23,10 +19,6 @@ function _hangman_start_game() {
  * End game and store in session
   */
 function _hangman_end_game() {
-  if (isset($_SESSION['hangman_word'])){
-    unset($_SESSION['hangman_word']);
-  }
-
   $_SESSION['hangman_game_ended'] = time();
 }
 
