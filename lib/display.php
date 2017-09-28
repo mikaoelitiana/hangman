@@ -10,6 +10,9 @@
  * Create hangman main page
  */
 function _hangman_page() {
+  global $user;
+  $username = isset($user->name) ? $user->name : "Anonymous";
+
   _hangman_start_game();
 
   drupal_add_js(drupal_get_path('module', 'hangman') . '/js/hangman.js');
@@ -30,6 +33,16 @@ function _hangman_page() {
   $content['text_input'] = array(
     '#type' => 'markup',
     '#markup' => '<div class="hangman-inputs">' . _hanman_build_keyboard() . '</div>',
+  );
+
+
+  $content['text_save_score'] = array(
+    '#type' => 'markup',
+    '#markup' => '<div class="hangman-game-save-score" style="display:none;">
+    <label>Username: </label>
+    <input type="text" value="' . $username . '" id="hangman_score_username"/>
+    <button class="hangman-game-save-score--button">Save score</button>
+    </div>',
   );
 
   $content['text_game_status'] = array(

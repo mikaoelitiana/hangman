@@ -68,3 +68,29 @@
   margin: 20px;
   font: 40px sans-serif;
 }
+
+.hangman-game-save-score {
+  font: 20px sans-serif;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 20px;
+}
+
+.hangman-game-save-score label {
+  line-height: 40px;
+  margin: 0 10px;
+}
+
+.hangman-game-save-score input {
+  margin: 0 10px;
+}
+
+.hangman-game-save-score--button {
+  margin: 0 10px;
+  font-size: 20px;
+  color: #fff;
+  background: #52cc60;
+  border: 5px solid rgb(3, 143, 17);
+}

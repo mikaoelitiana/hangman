@@ -15,10 +15,13 @@ jQuery(function($){
     if (data.won) {
       // You won
       disableAllButtons();
+
       $('.hangman-game-status').html('\
         <div class="hangman-game-status_won">🌟🌟 You won!!! ' + data.score + 'pts 🌟🌟</div>\
         <div class="hangman-game-status_restart"><button onclick="window.location.reload()">Restart</button></div>\
         ');
+
+      $('.hangman-game-save-score').show();
     }
   }
 
@@ -45,5 +48,10 @@ jQuery(function($){
     $(this).attr('disabled', 'true');
   });
 
+  $('.hangman-game-save-score--button').click(function() {
+    $.getJSON("hangman/save-score", { username : $('hangman_score_username').val() }, function(data){
+
+    });
+  });
 
 });
