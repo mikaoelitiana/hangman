@@ -12,11 +12,20 @@ require 'functions.php';
 */
 function hangman_menu() {
     $items = array();
+
     $items['hangman'] = array(
         'title' => 'Hangman Game',
         'page callback' => '_hangman_page',
         'access arguments' => array('access content')
       );
+
+    $items['hangman/check-char'] = array(
+      'page arguments' => array(3),
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+      'delivery callback' => '_hangman_ajax_check_char',
+    );
+
     $items['hangman/high-scores'] = array(
         'title' => 'Hangman Game High-Scores',
         'page callback' => '_hangman_high_scores_page',

@@ -86,3 +86,11 @@ function _hanman_build_keyboard()
   $keyboard .= '</div>';
   return $keyboard;
 }
+
+/**
+ * Check if submited char exists in current guess word
+ */
+function _hangman_ajax_check_char()
+{
+  return;
+}
