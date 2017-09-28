@@ -14,6 +14,9 @@ jQuery(function($){
   }
 
   $('.hangman-keyboard--button').click(function(){
+    jQuery.getJSON("hangman/check-char", function(data){
+      console.log(data);
+    });
     incrementErrors();
     $(this).attr('disabled', 'true');
     $(this).addClass('hangman-keyboard--button_error');

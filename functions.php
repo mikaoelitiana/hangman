@@ -92,5 +92,5 @@ function _hanman_build_keyboard()
  */
 function _hangman_ajax_check_char()
 {
-  return;
+  return array();
 }

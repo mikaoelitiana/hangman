@@ -23,7 +23,8 @@ function hangman_menu() {
       'page arguments' => array(3),
       'type' => MENU_CALLBACK,
       'access arguments' => array('access content'),
-      'delivery callback' => '_hangman_ajax_check_char',
+      'page callback' => '_hangman_ajax_check_char',
+      'delivery callback' => 'drupal_json_output',
     );
 
     $items['hangman/high-scores'] = array(
