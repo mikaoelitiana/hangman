@@ -14,11 +14,19 @@ jQuery(function($){
   }
 
   $('.hangman-keyboard--button').click(function(){
-    var char = $(this).data("key")
+    var key = $(this);
+    var char = $(this).data("key");
     $.getJSON("hangman/check-char", { char: char }, function(data){
-      console.log(data);
-      incrementErrors();
-      $(this).addClass('hangman-keyboard--button_error');
+      if (data.positions.length < 1) {
+        incrementErrors();
+        key.addClass('hangman-keyboard--button_error');
+      } else {
+        for (var i = 0; i < data.positions.length; i++) {
+          var element = data.positions[i];
+          $(`.hangman-placeholders--char:nth-child(${element})`).html(data.char);
+        }
+        key.addClass('hangman-keyboard--button_found');
+      }
     });
     $(this).attr('disabled', 'true');
   });

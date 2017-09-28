@@ -65,8 +65,8 @@ function _hangman_get_guess_word() {
 function _hangman_char_positions_in_word($char, $word) {
   $found = array();
   $offset = 0;
-  while(($at = strpos($word, $char, $offset)) !== false) {
-    $found[] = $at;
+  while(($at = stripos($word, $char, $offset)) !== false) {
+    $found[] = $at + 1;
     $offset = $at + 1;
   }
   return $found;
@@ -94,5 +94,8 @@ function _hangman_ajax_check_char()
 {
   $params = drupal_get_query_parameters();
   $found = _hangman_char_positions_in_word($params['char'], _hangman_get_guess_word());
-  return $found;
+  return array(
+    'positions' => $found,
+    'char' => $params['char'],
+  );
 }
