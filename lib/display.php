@@ -4,6 +4,8 @@
  * Contains functions related to displaying thins
  */
 
+ require_once 'gameplay.php';
+
 /**
  * Create hangman main page
  */

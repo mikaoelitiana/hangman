@@ -7,6 +7,7 @@
 
 require_once 'lib/display.php';
 require_once 'lib/gameplay.php';
+require_once 'lib/score.php';
 
 /**
 * Implements hook_menu().

@@ -4,6 +4,8 @@
  * Contains functions related to game
  */
 
+define('ERROR_LIMIT', 5);
+
 /**
  * Start game and store in session
  */
@@ -66,6 +68,7 @@ function _hangman_ajax_check_char()
     $_SESSION['hangman_found'] += count($found);
     if($_SESSION['hangman_found'] == strlen($word)) {
       $won = true;
+      $score = _hangman_calculate_score();
     }
   } else {
     $_SESSION['hangman_errors'] += 1;
