@@ -23,7 +23,7 @@ function _hangman_page() {
 
   $content['text_input'] = array(
     '#type' => 'markup',
-    '#markup' => '<div class="hangman-inputs"><input type="text" placeholder="Try letters or numbers ..."/></div>',
+    '#markup' => '<div class="hangman-inputs">' . _hanman_build_keyboard() . '</div>',
   );
 
   return $content;
@@ -70,4 +70,19 @@ function _hangman_char_positions_in_word($char, $word) {
     $offset = $at + 1;
   }
   return $found;
+}
+
+
+/**
+ * Build a keyboard layout
+ */
+function _hanman_build_keyboard()
+{
+  $chars = str_split('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
+  $keyboard = '<div class="hangman-keyboard">';
+  foreach($chars as $char){
+    $keyboard .= '<button data-key="' . $char . '" class="hangman-keyboard--button">' . $char . '</button>';
+  }
+  $keyboard .= '</div>';
+  return $keyboard;
 }

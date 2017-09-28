@@ -23,3 +23,15 @@
   font-family: sans-serif;
   text-transform: uppercase;
 }
+
+.hangman-keyboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hangman-keyboard--button {
+  height: 60px;
+  width: 60px;
+  margin: 5px;
+  font: 30px sans-serif;
+}
