@@ -92,5 +92,7 @@ function _hanman_build_keyboard()
  */
 function _hangman_ajax_check_char()
 {
-  return array();
+  $params = drupal_get_query_parameters();
+  $found = _hangman_char_positions_in_word($params['char'], _hangman_get_guess_word());
+  return $found;
 }

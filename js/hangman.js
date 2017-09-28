@@ -14,12 +14,13 @@ jQuery(function($){
   }
 
   $('.hangman-keyboard--button').click(function(){
-    jQuery.getJSON("hangman/check-char", function(data){
+    var char = $(this).data("key")
+    $.getJSON("hangman/check-char", { char: char }, function(data){
       console.log(data);
+      incrementErrors();
+      $(this).addClass('hangman-keyboard--button_error');
     });
-    incrementErrors();
     $(this).attr('disabled', 'true');
-    $(this).addClass('hangman-keyboard--button_error');
   });
 
 
