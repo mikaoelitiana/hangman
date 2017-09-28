@@ -4,6 +4,10 @@ jQuery(function($){
     if (data.game_over) {
       // Game over
       disableAllButtons();
+      $('.hangman-game-status').html('\
+        <div class="hangman-game-status_over">Game Over!</div>\
+        <div class="hangman-game-status_restart"><button onclick="window.location.reload()">Restart</button></div>\
+        ');
     }
   }
 

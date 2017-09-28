@@ -29,6 +29,11 @@ function _hangman_page() {
     '#markup' => '<div class="hangman-inputs">' . _hanman_build_keyboard() . '</div>',
   );
 
+  $content['text_game_status'] = array(
+    '#type' => 'markup',
+    '#markup' => '<div class="hangman-game-status"></div>',
+  );
+
   return $content;
 }
 
@@ -45,6 +50,7 @@ function _hangman_start_game() {
  * End game and store in session
   */
 function _hangman_end_game() {
+  unset($_SESSION['hangman_word']);
   $_SESSION['hangman_game_started'] = false;
 }
 
@@ -112,6 +118,7 @@ function _hangman_ajax_check_char()
     $_SESSION['hangman_errors'] += 1;
     if ($_SESSION['hangman_errors'] >= ERROR_LIMIT) {
       $game_over = true;
+      _hangman_end_game();
     }
   }
 
