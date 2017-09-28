@@ -94,3 +94,20 @@
   background: #52cc60;
   border: 5px solid rgb(3, 143, 17);
 }
+
+.hangman-leadboard {
+  font: 25px sans-serif;
+}
+
+.hangman-leadboard table td {
+  padding: 15px;
+}
+
+.hangman-leadboard table td.stars {
+  font-size: 30px;
+  text-align: center;
+}
+
+.hangman-leadboard table td.score {
+  text-align: center;
+}

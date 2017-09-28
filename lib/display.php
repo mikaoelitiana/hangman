@@ -94,12 +94,20 @@ function _hangman_high_scores_page() {
 }
 
 function _hangman_build_lead_board() {
-  $leadboard = '<div class="hangman_leadboard"><table>';
+  $leadboard = '<div class="hangman-leadboard"><table>';
   $result = _hangman_get_high_scores();
+  $i = 1;
   while($record = $result->fetchAssoc()) {
-    $leadboard .= '<tr><td>' . $record['name'] . '</td><td>' . $record['max_score'] . '</td>';
+    $leadboard .= '<tr><td class="stars">' . _hangman_get_stars($i++) . '</td><td>' . $record['name'] . '</td><td class="score">' . $record['max_score'] . '</td>';
   }
   $leadboard .= '</table></div>';
 
   return $leadboard;
+}
+
+function _hangman_get_stars($position) {
+  if ($position <= 3) {
+    return str_repeat('🌟', 4 - $position);
+  }
+  return '';
 }
