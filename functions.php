@@ -34,6 +34,7 @@ function _hangman_page() {
  */
 function _hangman_start_game() {
   $_SESSION['hangman_game_started'] = true;
+  $_SESSION['hangman_found'] = 0;
 }
 
 /**
@@ -93,9 +94,18 @@ function _hanman_build_keyboard()
 function _hangman_ajax_check_char()
 {
   $params = drupal_get_query_parameters();
-  $found = _hangman_char_positions_in_word($params['char'], _hangman_get_guess_word());
+  $word = _hangman_get_guess_word();
+  $found = _hangman_char_positions_in_word($params['char'], $word);
+  $won = false;
+
+  $_SESSION['hangman_found'] += count($found);
+  if($_SESSION['hangman_found'] == strlen($word)) {
+    $won = true;
+  }
+
   return array(
     'positions' => $found,
     'char' => $params['char'],
+    'won' => $won,
   );
 }
