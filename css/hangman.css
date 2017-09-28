@@ -35,3 +35,7 @@
   margin: 5px;
   font: 30px sans-serif;
 }
+
+.hangman-keyboard--button_error {
+  border: 4px #f00 dotted;
+}

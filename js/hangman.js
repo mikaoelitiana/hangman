@@ -11,6 +11,7 @@ jQuery(function($){
   $('.hangman-keyboard--button').click(function(){
     incrementErrors();
     $(this).attr('disabled', 'true');
+    $(this).addClass('hangman-keyboard--button_error');
   });
 
 
