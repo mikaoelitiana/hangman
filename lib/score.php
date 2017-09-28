@@ -39,7 +39,7 @@
   * @return int the score
   */
  function _hangman_calculate_score($word, $errors, $start, $end) {
-   // initial score is 1000
+   // initial score is 1000 * word char count
    $score = strlen($word) * 1000;
 
    // If any error done, remove some points
