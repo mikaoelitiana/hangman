@@ -1,10 +1,5 @@
-.hangman-inputs input{
-  width: 615px;
-  padding: 20px;
-  text-align: center;
-  height: 50px;
-  font-size: 35px;
-  text-transform: uppercase;
+.hangman-inputs {
+  max-width: 690px;
 }
 
 .hangman-placeholders {
@@ -63,7 +58,7 @@
 .hangman-game-status_restart button {
   color: #fff;
   background: #52cc60;
-  border: 5px solid rgb(3, 143, 17);
+  border: 2px solid rgb(3, 143, 17);
   padding: 10px;
   margin: 20px;
   font: 40px sans-serif;
@@ -92,7 +87,7 @@
   font-size: 20px;
   color: #fff;
   background: #52cc60;
-  border: 5px solid rgb(3, 143, 17);
+  border: 2px solid rgb(3, 143, 17);
 }
 
 .hangman-leadboard {
