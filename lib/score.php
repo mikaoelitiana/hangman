@@ -44,14 +44,16 @@
 
    // If any error done, remove some points
    if ($errors > 0) {
-     $score -= $errors * 35;
+     $score -= $errors * 750;
    } else {
      // Bonus if no error
      $score += 1500;
    }
 
   // calculate totla time and ad some score
-  $score += (int)(exp(1/($end - $start)) * 1500);
+  if ($end - $start < 100) {
+    $score += (int)( 1 / ($end - $start) * 10000);
+  }
 
   // temporary store score
   $_SESSION['hangman_latest_score'] = $score;
