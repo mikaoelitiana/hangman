@@ -27,44 +27,6 @@ function _hangman_end_game() {
 }
 
 /**
- * Take the guess word from session if exists
- * otherwise return a random word and store
- * in session
- */
-function _hangman_get_guess_word() {
-  if (!isset($_SESSION['hangman_word'])) {
-    $result = db_select('hangman_word', 'hw')
-      ->fields('hw', array('word'))
-      ->range(0,1)
-      ->orderRandom()
-      ->execute()
-      ->fetchAssoc();
-    $word = $result['word'];
-    $_SESSION['hangman_word'] = $word;
-  } else {
-    $word = $_SESSION['hangman_word'];
-  }
-  return $word;
-}
-
-/**
- * Find all positions of a char in a given word
- *
- * @param string $char One char to find in the word
- * @param string $word The word to guess
- */
-function _hangman_char_positions_in_word($char, $word) {
-  $found = array();
-  $offset = 0;
-  while(($at = stripos($word, $char, $offset)) !== false) {
-    $found[] = $at + 1;
-    $offset = $at + 1;
-  }
-  return $found;
-}
-
-
-/**
  * Check if submited char exists in current guess word
  */
 function _hangman_ajax_check_char()

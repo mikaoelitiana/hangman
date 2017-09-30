@@ -57,15 +57,30 @@ function _hangman_word_delete(){
 }
 
 
-function _hangman_word_form($form, &$form_state) {
+function _hangman_word_form($form, &$form_state, $id = null) {
+  // Check if it is an update
+  if($id) {
+    $word = _hangman_get_word_by_id($id);
+  } else {
+    $word = array();
+  }
+
   $form['word'] = array(
     '#type' => 'textfield',
     '#title' => t('Word'),
     '#description' => t('One word to guess.'),
+    '#default_value' => isset($word['word']) ? $word['word'] : '',
     '#size' => 40,
     '#maxlength' => 9,
     '#required' => TRUE,
   );
+
+  if (isset($word['wid'])) {
+    $form['wid'] = array(
+      '#type' => 'hidden',
+      '#value' => $word['wid'],
+    );
+  }
 
   $form['submit'] = array(
     '#type' => 'submit',
@@ -87,13 +102,15 @@ function _hangman_word_submit($form, $form_state) {
 
   if(!$error){
     $word = $form_state['values']['word'];
+    $wid = isset($form_state['values']['wid']) ? $form_state['values']['wid'] : null;
 
-    $wid = db_insert('hangman_word')
+    $wid = db_merge('hangman_word')
+      ->key(array('wid' => $wid))
       ->fields(array(
         'word' => $word,
       ))
       ->execute();
 
-    drupal_set_message(t('Record has been added!'));
+    drupal_set_message(t('Record has been saved!'));
   }
 }

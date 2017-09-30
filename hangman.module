@@ -6,6 +6,7 @@
  */
 
 require_once 'lib/display.php';
+require_once 'lib/word.php';
 require_once 'lib/gameplay.php';
 require_once 'lib/score.php';
 require_once 'lib/admin.php';
@@ -53,16 +54,16 @@ function hangman_menu() {
 
     $items['admin/hangman/word/%/edit'] = array(
       'title' => 'Edit Word',
-      'description' => 'View Hangman Words.',
-      'page callback' => '_hangman_word_edit_block_view',
-      'page argument' => array(3),
+      'description' => 'Edit Hangman Word.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('_hangman_word_form', 3),
       'access arguments' => array('access hangman_word'),
       'weight' => -14,
     );
 
     $items['admin/hangman/word/%/delete'] = array(
       'title' => 'Delete Word',
-      'description' => 'delete Hangman Words.',
+      'description' => 'Delete Hangman Words.',
       'page callback' => '_hangman_word_delete',
       'page argument' => array(3),
       'access arguments' => array('access hangman_word'),
