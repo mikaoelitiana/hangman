@@ -8,6 +8,7 @@
 require_once 'lib/display.php';
 require_once 'lib/gameplay.php';
 require_once 'lib/score.php';
+require_once 'lib/admin.php';
 
 /**
 * Implements hook_menu().
@@ -39,7 +40,43 @@ function hangman_menu() {
         'title' => 'Hangman Game High-Scores',
         'page callback' => '_hangman_high_scores_page',
         'access arguments' => array('access content')
-      );
+    );
+
+    $items['admin/hangman/word/add'] = array(
+      'title' => 'Add Word',
+      'description' => 'Add Hangman Word.',
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('_hangman_word_form'),
+      'access arguments' => array('access hangman_word'),
+      'weight' => -14,
+    );
+
+    $items['admin/hangman/word/%/edit'] = array(
+      'title' => 'Edit Word',
+      'description' => 'View Hangman Words.',
+      'page callback' => '_hangman_word_edit_block_view',
+      'page argument' => array(3),
+      'access arguments' => array('access hangman_word'),
+      'weight' => -14,
+    );
+
+    $items['admin/hangman/word/%/delete'] = array(
+      'title' => 'Delete Word',
+      'description' => 'delete Hangman Words.',
+      'page callback' => '_hangman_word_delete',
+      'page argument' => array(3),
+      'access arguments' => array('access hangman_word'),
+      'weight' => -14,
+    );
+
+    $items['admin/hangman/word'] = array(
+      'title' => 'Hangman Words',
+      'description' => 'View Hangman Words.',
+      'page callback' => '_hangman_word_sort_with_pager_content',
+      'access arguments' => array('access hangman_word'),
+      'weight' => -14,
+    );
+
     return $items;
 }
 
