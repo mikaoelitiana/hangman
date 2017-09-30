@@ -4,8 +4,6 @@
  * @file Admin functions
  * */
 
-
-
 /**
  * Display word list in admin
  */
@@ -91,7 +89,9 @@ function _hangman_word_form($form, &$form_state, $id = null) {
   return $form;
 }
 
-
+/**
+ * Handle word form submissions
+ */
 function _hangman_word_submit($form, $form_state) {
   $error = false;
 
