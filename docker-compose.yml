@@ -9,7 +9,7 @@ services:
       - /var/www/html/profiles
       - /var/www/html/themes
       - /var/www/html/sites
-      - /var/www/html/sites/default/files
+      - /tmp/:/var/www/html/sites/default/files
       - ./:/var/www/html/sites/all/modules/hangman
     restart: always
     links:

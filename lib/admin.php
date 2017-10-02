@@ -104,11 +104,17 @@ function _hangman_word_submit($form, $form_state) {
 
   if(!$error){
     $word = $form_state['values']['word'];
-    $wid = isset($form_state['values']['wid']) ? $form_state['values']['wid'] : null;
 
-    $wid = db_merge('hangman_word')
-      ->key(array('wid' => $wid))
-      ->fields(array(
+    if(isset($form_state['values']['wid'])){
+      $query = db_merge('hangman_word')
+        ->key(array(
+          'wid' => $form_state['values']['wid'],
+        ));
+    } else {
+      $query = db_insert('hangman_word');
+    }
+
+    $query->fields(array(
         'word' => $word,
       ))
       ->execute();
