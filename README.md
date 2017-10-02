@@ -14,7 +14,7 @@ A Drupal module that adds a hangman game to your website.
 ## Run with Docker
 
 - Run `docker-compose up` in command-line from the module directory
-- Go to [localhost](http://localhost:8080)
+- Go to [localhost:8080](http://localhost:8080)
 - Follow the installation process and use the following options:
   - __Database type:__ `PostgreSQL`
   - __Database name:__ `postgres`
