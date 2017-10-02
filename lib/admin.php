@@ -24,12 +24,14 @@ function _hangman_word_sort_with_pager_content() {
   $result = $pager->execute();
 
   $rows = array();
+  $output = '';
+
   foreach($result as $res){
     $rows[] = array($res->wid, $res->word, '<a href="' . url('admin/hangman/word/' . $res->wid . '/edit') . '">Edit</a> | <a href="' . url('admin/hangman/word/' . $res->wid . '/delete') . '" onclick="return confirm(\'Are you sure\')">Delete</a>');
   }
 
   if (!empty($rows)) {
-    $output = theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => 'sort-table')));
+    $output .= theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => 'sort-table')));
     $output .= theme('pager');
   }
   else {
@@ -46,7 +48,7 @@ function _hangman_word_sort_with_pager_content() {
 function _hangman_word_delete(){
   $wid = arg(3);
 
-  $num_updated = db_delete('hangman_word')
+  db_delete('hangman_word')
     ->condition('wid', $wid, '=')
     ->execute();
 
