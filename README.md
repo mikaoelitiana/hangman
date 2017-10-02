@@ -22,4 +22,4 @@ A Drupal module that adds a hangman game to your website.
   - __Database password:__ `example`
   - __Database host:__ `postgres`
 - Enable module `Hangman Game` in _Administration > Modules_
-- Go to URL `/hangman`
+- Go to URL [localhost:8080/hangman](http://localhost:8080/hangman)
