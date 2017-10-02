@@ -87,6 +87,7 @@ function _hangman_word_form($form, &$form_state, $id = null) {
     '#value' => t('Save'),
   );
 
+  $form['#validate'][] = '_hangman_word_validate';
   $form['#submit'][] = '_hangman_word_submit';
   return $form;
 }
@@ -120,5 +121,14 @@ function _hangman_word_submit($form, $form_state) {
       ->execute();
 
     drupal_set_message(t('Record has been saved!'));
+  }
+}
+
+/**
+ * Validate word add form
+ */
+function _hangman_word_validate($form, &$form_state) {
+  if (preg_match('/\W|\s/', $form_state['values']['word']) !== 0) {
+    form_set_error('word', 'Please, use only alpha numeric characters.');
   }
 }
